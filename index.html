@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>0A01 — Materiale Didattico</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;600&family=IBM+Plex+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg:        #0d1117;
+    --bg2:       #161b22;
+    --bg3:       #1c2128;
+    --border:    #30363d;
+    --text:      #c9d1d9;
+    --muted:     #8e9bad;
+    --accent:    #978cfc;
+    --accent2:   #c6d1ff;
+    --warn:      #f3c067;
+    --mono:      'JetBrains Mono', monospace;
+    --sans:      'IBM Plex Sans', sans-serif;
+    --sidebar-w: 570px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--sans);
+    font-size: 14px;
+    line-height: 1.7;
+    margin: 0;
+    padding-left: var(--sidebar-w);
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  /* ── SIDEBAR ─────────────────────────────── */
+  nav {
+    width: var(--sidebar-w);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    background: var(--bg2);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 0 32px;
+    z-index: 10;
+    background-image: url('IMG/x_sfondo.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+  .nav-logo {
+    font-family: var(--mono);
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--accent);
+    padding: 0 20px 20px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: .04em;
+    text-align: right;
+  }
+
+  .nav-section-label {
+    font-family: var(--mono);
+    font-size: 9px;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: #f2e67e;
+    padding: 18px 20px 6px;
+    text-align: right;
+  }
+
+  nav a {
+    display: block;
+    padding: 6px 20px;
+    color: var(--text);
+    text-decoration: none;
+    font-size: 13px;
+    border-right: 2px solid rgba(255,255,255,0.05);
+    transition: all .2s ease;
+    text-align: right;
+  }
+
+  nav a:hover { color: var(--accent); border-right-color: var(--accent); background: rgba(88,166,255,.05); }
+  nav a.active { color: var(--accent); border-right-color: var(--accent); font-weight: 500; }
+
+  .nav-footer {
+    margin-top: auto;
+    padding: 10px;
+    font-family: var(--mono);
+    font-size: 10px;
+    color: var(--muted);
+    writing-mode: vertical-lr;
+    text-orientation: mixed;
+    align-self: flex-start;
+    letter-spacing: .1em;
+    transform: rotate(180deg);
+  }
+
+  /* ── HAMBURGER ───────────────────────────── */
+  .hamburger {
+    display: none;
+    position: fixed;
+    top: 12px;
+    right: 16px;
+    z-index: 100;
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── MAIN ────────────────────────────────── */
+  main {
+    padding: 48px 32px 80px;
+    max-width: 850px;
+    margin-left: 0;
+    margin-right: auto;
+    width: 100%;
+  }
+
+  /* ── TABLET ──────────────────────────────── */
+  @media (max-width: 1280px) {
+    :root { --sidebar-w: 260px; }
+    main { padding: 48px 40px 80px; }
+  }
+
+  /* ── MOBILE ──────────────────────────────── */
+  @media (max-width: 900px) {
+    :root { --sidebar-w: 0px; }
+    nav {
+      width: 260px;
+      transform: translateX(-100%);
+      transition: transform .3s ease;
+    }
+    nav.open { transform: translateX(0); }
+    main {
+      margin-left: auto;
+      margin-right: auto;
+      padding: 24px 16px 80px;
+    }
+    .hamburger { display: flex; }
+    .slide-grid { grid-template-columns: 1fr !important; }
+  }
+
+  /* ── PAGE HEADER ─────────────────────────── */
+  .page-header {
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+  }
+  .page-header h1 {
+    font-family: var(--mono);
+    font-size: 22px;
+    color: #e6edf3;
+    font-weight: 600;
+    letter-spacing: .02em;
+    margin-bottom: 30px;
+  }
+  .page-header p { color: var(--muted); font-size: 13px; }
+
+  /* ── SECTIONS ────────────────────────────── */
+  section {
+    margin-bottom: 60px;
+    scroll-margin-top: 32px;
+  }
+
+  section h2 {
+    font-family: var(--mono);
+    font-size: 13px;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  section h2::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  p { margin-bottom: 12px; color: var(--text); }
+
+  /* ── CALLOUT ─────────────────────────────── */
+  .callout {
+    background: var(--bg3);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 32px;
+    font-size: 13px;
+    color: #b1bac4;
+  }
+
+  /* ── SLIDE GRID ──────────────────────────── */
+  .slide-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 24px;
+    margin-top: 8px;
+  }
+
+  .slide-card {
+    background: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+    transition: border-color .2s ease;
+  }
+  .slide-card:hover { border-color: var(--accent); }
+
+  .slide-card img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 16/9;
+    object-fit: cover;
+    background: var(--bg3);
+  }
+
+  .slide-caption {
+    padding: 12px 14px;
+    font-size: 12px;
+    color: var(--muted);
+    font-family: var(--mono);
+    border-top: 1px solid var(--border);
+    line-height: 1.5;
+  }
+
+  /* placeholder quando img non c'è ancora */
+  .slide-placeholder {
+    width: 100%;
+    aspect-ratio: 16/9;
+    background: var(--bg3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: .06em;
+  }
+
+  /* ── LINK ─────────────────────────────────── */
+  a.ext { color: var(--accent); text-decoration: none; border-bottom: 1px dashed rgba(88,166,255,.4); }
+  a.ext:hover { border-bottom-color: var(--accent); }
+
+  /* ── SCROLLBAR ───────────────────────────── */
+  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  ::-webkit-scrollbar-track { background: transparent; }
+  ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+  /* ── LIGHTBOX ────────────────────────────── */
+  .slide-card img { cursor: zoom-in; }
+
+  #lightbox {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.88);
+    z-index: 999;
+    align-items: center;
+    justify-content: center;
+    cursor: zoom-out;
+  }
+  #lightbox.open { display: flex; }
+  #lightbox img {
+    max-width: 90vw;
+    max-height: 90vh;
+    object-fit: contain;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    cursor: default;
+  }
+  #lightbox-close {
+    position: fixed;
+    top: 20px;
+    right: 24px;
+    font-family: var(--mono);
+    font-size: 20px;
+    color: var(--muted);
+    cursor: pointer;
+    line-height: 1;
+    transition: color .2s;
+  }
+  #lightbox-close:hover { color: var(--accent); }
+</style>
+</head>
+<body>
+
+<button class="hamburger" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+
+<nav>
+  <div class="nav-logo">Formazione // CEFI</div>
+  <div class="nav-section-label">Formazione</div>
+  <a href="formazione.html" class="active">Materiale didattico</a>
+
+  <div class="nav-footer">alessandro muzi — lab documentation</div>
+</nav>
+
+<main>
+  <div class="page-header">
+    <h1>// materiale_didattico</h1>
+    <p>Oltre al quaderno degli appunti, mi sono divertito a creare dei file documentazione che mi fossero utili durante le esercitazioni e lo studio.<p>In particolare i riferimenti colorati per le parentesi di Kea, mi sono stati molto utili non ricorrendo mai al copia e incolla</p>
+    <p>La schermata riguardante le interfacce è relativa alla prima parte del corso, il documento con la configurazione rete , piuttosto ampio, proseguiva , oltre a Kea e ISC DHCP, con zone DNS, comandi e script d'avvio Firewall, NAT e Routing, configurazione Samba, Apache (SSL), e finiva con UFW e firewalld.</p>
+  </div>
+
+  <section id="slide">
+    <h2>documentazione</h2>
+. 
+    <div class="slide-grid">
+
+      <!-- SLIDE 1 -->
+      <div class="slide-card">
+        <!-- sostituisci src con il percorso reale, es: IMG/slide1.jpg -->
+        
+        <img src="IMG/______schermo comandi.jpg" alt="Slide 1">
+        <div class="slide-caption">
+          <!-- didascalia slide 1 — da aggiungere -->
+          Parziale della lista comandi Linux
+        </div>
+      </div>
+
+      <!-- SLIDE 2 -->
+      <div class="slide-card">
+        
+        <img src="IMG/kea.jpg" alt="Slide 2">
+        <div class="slide-caption">
+          Kea DHCP da Configurazione Rete
+        </div>
+      </div>
+
+      <!-- SLIDE 3 -->
+      <div class="slide-card">
+        
+        <img src="IMG/schermo_conf.jpg" alt="Slide 3">
+        <div class="slide-caption">
+          Interfaces da Configurazione Rete
+        </div>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<div id="lightbox">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="">
+</div>
+
+<script>
+function openLightbox(src, alt) {
+  document.getElementById('lightbox-img').src = src;
+  document.getElementById('lightbox-img').alt = alt;
+  document.getElementById('lightbox').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox() {
+  document.getElementById('lightbox').classList.remove('open');
+  document.body.style.overflow = '';
+}
+document.getElementById('lightbox').addEventListener('click', function(e) {
+  if (e.target === this) closeLightbox();
+});
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeLightbox();
+});
+document.querySelectorAll('.slide-card img').forEach(function(img) {
+  img.addEventListener('click', function() {
+    openLightbox(this.src, this.alt);
+  });
+});
+</script>
+</body>
+</html>
